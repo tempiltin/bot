@@ -1,22 +1,17 @@
 {
   "name": "bot",
   "version": "1.0.0",
-  "description": "bu mening node jsda yaratgan birinchi botim",
+  "description": "sdsd",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Tempiltin99/bot.git"
-  },
-  "keywords": [],
-  "author": "Temurbekshukurov",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "cron": "^1.8.2",
-    "node-telegram-bot-api": "^0.54.0",
+    "nodemon": "^2.0.15",
     "telebot": "^1.4.1"
   }
 }

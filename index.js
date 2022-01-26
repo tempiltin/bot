@@ -1,71 +1,32 @@
-const TOKEN = "5034967485:AAFb4wrFmtpoMqLuNku8aKttOSq9QXez_io";
-const Telebot = require('telebot');
-const TelegramBot = require('node-telegram-bot-api')
-const bot = new Telebot(TOKEN);
-const chatIds =[];
-const CronJob = require('cron').CronJob; // bu bizga belgilagan vaqt oralig'ida habar yuboadi
-
-
-
-const telebot = new TelegramBot(TOKEN , {polling:true});
-const request = require('request');
-
-
-
-
-const job = new CronJob('24/1 * * * * *', function() {
-
-  console.log('Botni ishga tushirish muvofaqiyatli yakunlandi . . . . . . 👌');
-  chatIds.forEach((chatId) => {
-     bot.sendMessage(chatId , link + 'British Council va DTM hamkorligida tashkillashtirilgan APTIS FOR TEACHERS imtihoniga tayyorgarlik  uchun yaratilgan ');
-  });
+const TeleBot = require('telebot')
+const TELEGRAM_BOT_TOKEN = "5167690788:AAGHpsBK2w6ii6m8_M5MMwCac5-YUFMSfzs";
+const bot = new TeleBot(TELEGRAM_BOT_TOKEN)
+const chatIds = [];
+const CronJob = require('cron').CronJob;
+const job = new CronJob(' 0/3600 * * * *', function () {
+    console.log('You will see this message every 5 seconds');
+    chatIds.forEach((chatId) => {
+        bot.sendMessage(chatId, 'Vazifalarni yuborish esdan chiqmasin');
+    })
 }, null, true);
-
-
-bot.on('text' , () => msg.reply.text('kelgan habar: ' + msg.text));
+// bot.on('text' , async (msg) => msg.reply.text('Siz shu habarni bizga  yubordingiz: ' + ' ( ' + msg.text + ' ) ' + 'Iltimos javob kelishni kuting 😊'))
 bot.on(['/start'], (msg) => {
     let chatId = msg.chat.id;
-    if(!chatIds.includes(chatId)){
-        let link = 'https://t.me/aptis_for_teachers_uz'
+    if (!chatIds.includes(chatId)) {
         chatIds.push(chatId);
-        msg.reply.text('Assalomu alaykum hurmatli foydalanuvchi       botimizga xush kelibsiz.        Botimizdan foydalanganingiz          uchun minnatdormiz' +   
-       '            ' + '( ' + link  + ' )  '  + '     British Council va DTM hamkorligida tashkillashtirilgan APTIS FOR TEACHERS imtihoniga tayyorgarlik  uchun yaratilgan '
-        );
-        job.start();
-
+        msg.reply.text('Assalomu alaykum Botimizga xush kelibsiz ' + ' Kiyingi bosqich "/vazifa" ');
     }
-})
-
-// telebot.onText(/\/kino (.+)/ , (msg,match) =>{
-//     let kino = match[1];
-//     let chatId = msg.chat.id;
-//     request(`http://www.omdbapi.com/?i=tt3896198&apikey=59022c1b&t=${movie}` , (error,response,body)=> {
-//         if(!error && response.statusCode == 200){
-//             telebot.sendMessage(chatId , '_Loking for _' + movie + '...' , {parse_mode: 'Markdown'});
-//             telebot.sendMessage(chatId , 'Result: \n ' + body )
-//         }
-//     })
-
-// });
-
-
-
-
-
-
-
-// telebot.onText(/\/echo (.+)/ , (msg,match) =>{
-//     let echo = match[1];
-//     let chatId = msg.chat.id;
-//     telebot.sendMessage(chatId , echo);
-
-// });
-bot.start()
-bot.on(['/stop'], (msg) => {
+});
+bot.on(['/vazifa'], (msg) => {
     let chatId = msg.chat.id;
-    chatIds.pop(chatId)
-})
-
-
+    if (chatIds.includes(chatId)) {
+        msg.reply.text('Vazifangizni bizga yuboring ');
+    }
+});
+bot.on(['/stop'], async (msg) => {
+    let chatId = msg.chat.id;
+    chatIds.pop(chatId);
+});
+bot.start();
 
 
