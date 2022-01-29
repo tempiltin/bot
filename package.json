@@ -1,17 +1,26 @@
 {
   "name": "bot",
   "version": "1.0.0",
-  "description": "sdsd",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "cookie-parser": "~1.4.4",
     "cron": "^1.8.2",
+    "debug": "~2.6.9",
+    "dotenv": "^14.3.2",
+    "express": "~4.16.1",
+    "express-handlebars": "^6.0.2",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "mongoose": "^6.1.8",
+    "morgan": "~1.9.1",
     "nodemon": "^2.0.15",
     "telebot": "^1.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
